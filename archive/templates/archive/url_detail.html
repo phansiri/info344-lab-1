@@ -1,0 +1,10 @@
+{% extends "archive/base.html" %}
+
+{% block content %}
+        <div class="post">
+            <h1>Original URL: {{ url.originalUrl }}</h1>
+            <h2>Title: {{ url.pageTitle }}</h2>
+            <h3>Final URL: <a href="{{ url.finalUrl }}">{{ url.finalUrl }}</a></h3>
+            <h3>HTTP Status Code: {{ url.httpStatusCode }}</h3>
+        </div>
+{% endblock %}

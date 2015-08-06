@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Lit's Evil Archiver</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Lit's Evil Archiver</a></h1>
-        </div>
+{% extends "archive/base.html" %}
 
-        <h3>Lets serve it up</h3>
-
-        <div>
-            <h2><a href="">First URL</a></h2>
-            <p>stuff</p>
+{% block content %}
+    {% for url in urlList %}
+        <div class="post">
+            Original URL: <a href="{{ url.originalUrl }}">{{ url.originalUrl }}</a>
+            <h1><a href="{% url "url_detail" pk=url.pk %}">Title: {{ url.pageTitle }}</a></h1>
+            <p>Final URL: <a href="{{ url.finalUrl }}">{{ url.finalUrl }}</a></p>
+            <p>HTTP Status Code: {{ url.httpStatusCode }}</p>
         </div>
-        <div>
-            <h2><a href="">Second URL</a></h2>
-            <p>stuff</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock content %}
