@@ -2,6 +2,7 @@
 
 {% block content %}
         <div class="post">
+            <a class="btn btn-default" href="{% url "url_edit" pk=urlDetail.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             <h1>Original URL: {{ url.originalUrl }}</h1>
             <h2>Title: {{ url.pageTitle }}</h2>
             <h3>Final URL: <a href="{{ url.finalUrl }}">{{ url.finalUrl }}</a></h3>
