@@ -2,10 +2,29 @@
 
 {% block content %}
         <div class="post">
-            <a class="btn btn-default" href="{% url "url_edit" pk=urlDetail.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <h1>Original URL: {{ url.originalUrl }}</h1>
-            <h2>Title: {{ url.pageTitle }}</h2>
-            <h3>Final URL: <a href="{{ url.finalUrl }}">{{ url.finalUrl }}</a></h3>
-            <h3>HTTP Status Code: {{ url.httpStatusCode }}</h3>
+            <div class="boardered">
+                <table>
+                    <form method="POST"  id="delete_url " class="post-form">{% csrf_token %}
+                        <button class="save btn btn-danger" type="submit" href="{% url "url_list" %}">X</button>
+                    </form>
+                    <tr>
+                        <td>Original URL: </td>
+                        <td>{{ urlDetail.originalUrl }}</td>
+                    </tr>
+                    <tr>
+                        <td>Title: </td>
+                        <td>{{ urlDetail.pageTitle }}</td>
+                    </tr>
+                    <tr>
+                        <td>Final URL: </td>
+                        <td><a href="{{ urlDetail.finalUrl }}">{{ urlDetail.finalUrl }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>HTTP Status Code: </td>
+                        <td>{{ urlDetail.httpStatusCode }}</td>
+                    </tr>
+                    <a id="edit_url" class="btn btn-primary" href="{% url "url_edit" pk=urlDetail.pk %}"><span class="glyphicon glyphicon-edit"></span></a>
+                </table>
+            </div>
         </div>
 {% endblock %}
