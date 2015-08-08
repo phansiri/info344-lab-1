@@ -10,8 +10,13 @@
     </head>
     <body>
         <div class="page-header">
+            {% if user.is_authenticated %}
             <a href="{% url "url_new" %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <h1><a href="/">Lit's Evil Archiver</a></h1>
+            <p class="top-menu">Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
+            {% else %}
+            <a href="{% url "django.contrib.auth.views.login" %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            {% endif %}
+            <h1><a href="{% url "archive.views.url_list" %}">Lit's Evil Archiver</a></h1>
             <h3>Lets serve it up</h3>
         </div>
 
