@@ -107,4 +107,4 @@ USE_TZ = True
 STATIC_URL = '/urlstatic/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_REDIRECT_URL = '/lab1/'
+# LOGIN_REDIRECT_URL = '/'

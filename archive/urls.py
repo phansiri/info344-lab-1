@@ -3,8 +3,9 @@ from django.conf.urls import url
 from . import views
 
 # Lab 2
-from django.contrib import admin
-admin.autodiscover()
+# from django.contrib import admin
+# admin.autodiscover()
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Lab 1
@@ -15,6 +16,7 @@ urlpatterns = [
     url(r'^url/(?P<pk>[0-9]+)/delete/$', views.url_delete, name='url_delete'),
 
     # Lab 2
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^accounts/login/$', auth_views.login),
+    # url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    # url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 ]

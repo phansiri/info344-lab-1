@@ -13,8 +13,11 @@ from django.conf import settings
 # Lab 1 - url expander
 @login_required(login_url='accounts/login/')
 def url_list(request):
-    urlList = urlSites.objects.all().order_by('id')
-    return render(request, 'archive/url_list.html', {'urlList': urlList})
+    if not request.user.is_authenticated():
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    else:
+        urlList = urlSites.objects.all().order_by('id')
+        return render(request, 'archive/url_list.html', {'urlList': urlList})
 
 # @login_required
 def url_detail(request, pk):
