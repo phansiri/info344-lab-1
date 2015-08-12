@@ -7,21 +7,21 @@ import requests
 
 # Lab 2 - imports
 from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
 
 
 # Lab 1 - url expander
-@login_required
+@login_required(login_url='accounts/login/')
 def url_list(request):
     urlList = urlSites.objects.all().order_by('id')
     return render(request, 'archive/url_list.html', {'urlList': urlList})
 
-@login_required
+# @login_required
 def url_detail(request, pk):
     urlDetail = get_object_or_404(urlSites, pk=pk)
     return render(request, 'archive/url_detail.html', {'urlDetail': urlDetail})
 
-@login_required
+# @login_required
 def url_new(request):
     if request.method == "POST":
         form = UrlForm(request.POST)
@@ -39,7 +39,7 @@ def url_new(request):
         form = UrlForm()
     return render(request, 'archive/url_edit.html', {'form': form})
 
-@login_required
+# @login_required
 def url_edit(request, pk):
     post = get_object_or_404(urlSites, pk=pk)
     if request.method == "POST":
@@ -52,7 +52,7 @@ def url_edit(request, pk):
         form = UrlForm(instance=post)
     return render(request, 'archive/url_edit.html', {'form': form})
 
-@login_required
+# @login_required
 def url_delete(request, pk):
     urlDelete = get_object_or_404(urlSites, pk=pk)
     urlDelete.delete()
